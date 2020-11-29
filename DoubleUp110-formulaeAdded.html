@@ -1,0 +1,53 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>v1.10 Murgatroid</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        //While loop from this site:
+        //https://www.w3schools.com/js/js_loop_while.asp
+        //this is code to work out how much pay Murgatroid will receive
+        function sum() {
+            var sum = 0;
+            var i = 0;
+            //var payTot = 0.0;
+            var runningTotal = "$0"
+            var pay = Number(document.getElementById('txt1stPay').value);
+            var daysWkd = Number(document.getElementById('txtDayCount').value);
+            var intRate = Number(document.getElementById('txtIntRate').value);
+            var compInt = pay * Math.pow((1 + intRate/100), daysWkd);
+            //var compInt = Math.pow(10, 3);
+            for (i; i < daysWkd; i++) {
+                sum = sum + pay;
+                runningTotal = runningTotal + " after day " + (i) + "\npay is " + "$" + pay + " so total is $" + sum
+                pay = pay * (1 + intRate / 100);
+            }
+            runningTotal = runningTotal + "\nThis is $" + document.getElementById('txt1stPay').value +
+                " less than the Compound Interest formula!" + "\n(Can't figure out why!)" 
+            document.getElementById('txtRunningTotal').value = runningTotal;
+            document.getElementById('txtPayTot').value = "$" + sum;
+            document.getElementById('txtCompInt').value = "$" + compInt;            
+        }
+    </script>
+</head>
+<body>
+    <form id="input">
+        <h1>v1.10 Compound Interest</h1>
+        <h2>(disguised as Murgatroid)</h2>
+        In dollars, how much is Murgatroid&#39;s first day&#39;s pay?        <br />
+        $<input id="txt1stPay" type="text" value="1" /><br />        <br />
+        What will be the daily percentage increase?<br />
+        <input id="txtIntRate" type="text" value="100">/%<br />        <br />
+        How many days will he work for?<br />
+        <input id="txtDayCount" type="text" value="20" />
+        days<br />        <br />
+        <input id="Run" type="Button" value="run" onclick="sum()" />        <br />
+        Murgatroid&#39;s total pay is:<br />
+        <textarea id="txtPayTot" rows="1" cols="20"></textarea><br />
+        Murgatroid&#39;s pay and totals are:<br />
+        <textarea id="txtRunningTotal" rows="25" cols="90"></textarea>        <br />        <br />
+        Value at the END of the nth period with the Compound Interest formula is: <br />
+        <textarea id="txtCompInt" rows="1" cols="50"></textarea><br />
+    </form>
+</body>
+</html>

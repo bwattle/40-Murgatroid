@@ -1,0 +1,36 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>v1.04 Murgatroid</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        function sum() {
+            var sum = 0;        //declares "sum" as an integer, initially with value 0
+            var i = 0;          //declares the increment "i" as an integer, initially 0
+            //var pay = 0.1;      //declares "pay" as a "real" or decimal number
+            var pay = Number(document.getElementById('txt1stPay').value);
+	    var daysWkd= Number(document.getElementById('txtDayCount').value);
+            for (i; i < daysWkd; i++) {
+                pay = pay * 2;
+                sum = sum + pay;
+            }
+            document.getElementById('txtPayTot').value = "$" + sum;  //display in text box
+        }
+    </script>
+</head>
+<body>
+    <form id="input">
+	In dollars, how much is Murgatroid's first day's pay?<br />	
+	<textarea id="txt1stPay" rows="1" cols="35"></textarea><br />  
+	How many days will he work for?<br />	
+	<textarea id="txtDayCount" rows="1" cols="35"></textarea><br />       
+	How much will Murgatroid be paid?<br />
+        <br />
+        <input id="Run" type="Button" value="run" onclick="sum()" />
+        <br />
+        <p>Murgatroid&#39;s total pay is:</p>
+        <textarea id="txtPayTot" rows="1" cols="35"></textarea><br />
+        <br />
+    </form>
+</body>
+</html>

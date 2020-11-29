@@ -1,0 +1,46 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>v1.07 Murgatroid</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        //While loop from this site:
+        //https://www.w3schools.com/js/js_loop_while.asp
+        //this is code to work out how much pay Murgatroid will receive
+        function sum() {
+            var sum = 0;
+            var i = 0;
+            //var payTot = 0.0;
+            var runningTotal = "$0"
+            var pay = Number(document.getElementById('txt1stPay').value);
+            var daysWkd = Number(document.getElementById('txtDayCount').value);
+            for (i; i < daysWkd; i++) {
+                sum = sum + pay;
+                runningTotal = runningTotal + " on day " + (i) + "\n" + "$" + pay + " so total is $" + sum
+                pay = pay * 2;
+            }
+            document.getElementById('txtRunningTotal').value = runningTotal;
+            document.getElementById('txtPayTot').value = "$" + sum;
+        }
+    </script>
+</head>
+<body>
+    <form id="input">
+        In dollars, how much is Murgatroid&#39;s first day&#39;s pay?
+        <br />
+        <br />
+        $<textarea id="txt1stPay" rows="1" cols="20"></textarea><br />
+        <br />
+        How many days will he work for?<br />
+        <textarea id="txtDayCount" rows="1" cols="20"></textarea>
+        days<br />
+        <br />
+        <input id="Run" type="Button" value="run" onclick="sum()" />
+        <br />
+        <p>Murgatroid&#39;s total pay is:</p>
+        <textarea id="txtPayTot" rows="1" cols="20"></textarea><br />
+        <p>Murgatroid&#39;s daily pays and running totals are:</p>
+        <textarea id="txtRunningTotal" rows="20" cols="50"></textarea>
+    </form>
+</body>
+</html>
