@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <html>
 <head>
-    <title>v1.11 Murgatroid</title>
+    <title>v1.12 Murgatroid</title>
     <meta charset="utf-8" />
     <script type='text/javascript'>
         //While loop from this site:
@@ -20,20 +20,26 @@
             for (i; i < daysWkd; i++) {
                 sum = sum + pay;
                 runningTotal = runningTotal + " after day " + (i) +
-                    "\npay is $" + pay.toFixed(2) + " so total is $" + sum.toFixed(2)
+                    "\npay is $" + numberWithCommas(pay.toFixed(2)) + " so total is $" + numberWithCommas(sum.toFixed(2));
                 pay = pay * (1 + intRate / 100);
             }
             runningTotal = runningTotal + "\nThis is $" + pay2dp +
-                " less than the Compound Interest formula result below." + "\n(Can't figure out why!)";
+                " less than the Compound Interest formula result below." + "\n(Can't figure out why!)"; 
             document.getElementById('txtRunningTotal')["value"] = runningTotal;
             document.getElementById('txtPayTot')["value"] = "$" + sum;
-            document.getElementById('txtCompInt')["value"] = "$" + compInt;            
+            document.getElementById('txtCompInt')["value"] = "$" + numberWithCommas(compInt);            
+        }
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            // from: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
         }
     </script>
 </head>
 <body>
     <form id="input">
-        <h1>v1.11 Rounding of all $ amounts to 2DP</h1>
+        <h1>v1.12 Adding commas as 1000 separators to large numbers</h1>
+        <h2>(with help from Stack Overflow!)</h2>
+        <p>https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript</p>
         In dollars, how much is Murgatroid&#39;s first day&#39;s pay?        <br />
         $<input id="txt1stPay" type="text" value="1" /><br />        <br />
         What will be the daily percentage increase?<br />
