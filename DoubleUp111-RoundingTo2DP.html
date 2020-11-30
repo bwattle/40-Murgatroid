@@ -10,23 +10,26 @@
         function sum() {
             var sum = 0;
             var i = 0;
-            //var payTot = 0.0;
             var runningTotal = "$0"
-            var pay = Number(document.getElementById('txt1stPay').value);
-            var daysWkd = Number(document.getElementById('txtDayCount').value);
-            var intRate = Number(document.getElementById('txtIntRate').value);
-            var compInt = pay * Math.pow((1 + intRate/100), daysWkd);
+            var pay = Number(document.getElementById('txt1stPay')["value"]);
+            var pay2dp = pay.toFixed(2); //converts to STRING
+            var daysWkd = Number(document.getElementById('txtDayCount')["value"]);
+            var intRate = Number(document.getElementById('txtIntRate')["value"]);
+            var compInt = (pay * Math.pow((1 + intRate / 100), daysWkd));
             //var compInt = Math.pow(10, 3);
             for (i; i < daysWkd; i++) {
                 sum = sum + pay;
-                runningTotal = runningTotal + " after day " + (i) + "\npay is " + "$" + pay + " so total is $" + sum
+                runningTotal = runningTotal + " after day " + (i) +
+                    "\npay is $" + pay.toFixed(2) + " so total is $" + sum.toFixed(2)
                 pay = pay * (1 + intRate / 100);
             }
-            runningTotal = runningTotal + "\nThis is $" + document.getElementById('txt1stPay').value +
+            runningTotal = runningTotal +
+                "\nThe Compound Interest formula gives $" + compInt.toFixed(2) +
+                "\nThis is $" + pay2dp +
                 " less than the Compound Interest formula!" + "\n(Can't figure out why!)" 
-            document.getElementById('txtRunningTotal').value = runningTotal;
-            document.getElementById('txtPayTot').value = "$" + sum;
-            document.getElementById('txtCompInt').value = "$" + compInt;            
+            document.getElementById('txtRunningTotal')["value"] = runningTotal;
+            document.getElementById('txtPayTot')["value"] = "$" + sum;
+            document.getElementById('txtCompInt')["value"] = "$" + compInt;            
         }
     </script>
 </head>
