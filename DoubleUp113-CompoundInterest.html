@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>v1.13 Compound Interest</title>
+    <meta charset="utf-8" />
+    <script type='text/javascript'>
+        //30/11/2020 - updated from the Murgatroid code
+        function sum() {
+            var sum = 0;
+            var i = 0;
+            var runningTotal = "$0"
+            var pay = Number(document.getElementById('txt1stPay')["value"]);
+            var pay2dp = pay.toFixed(2); //converts to STRING
+            var daysWkd = Number(document.getElementById('txtDayCount')["value"]);
+            var intRate = Number(document.getElementById('txtIntRate')["value"]);
+            var compInt = (pay * Math.pow((1 + intRate / 100), daysWkd));
+            //var compInt = Math.pow(10, 3);
+            for (i; i < daysWkd; i++) {
+                sum = sum + pay;
+                runningTotal = runningTotal + " after year " + (i) +
+                    "\nbalance is $" + numberWithCommas(pay.toFixed(2)) + " so total is $" + numberWithCommas(sum.toFixed(2));
+                pay = pay * (1 + intRate / 100);
+            }
+            runningTotal = runningTotal + "\nThis is $" + pay2dp +
+                " less than the Compound Interest formula result below." + "\n(Can't figure out why!)"; 
+            document.getElementById('txtRunningTotal')["value"] = runningTotal;
+            document.getElementById('txtPayTot')["value"] = "$" + numberWithCommas(sum);
+            document.getElementById('txtCompInt')["value"] = "$" + numberWithCommas(compInt);            
+        }
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+            // from: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+        }
+    </script>
+</head>
+<body>
+    <form id="input">
+        <h1>v1.13 Compound Interest &amp; Annuity calculator</h1>
+        <p>&nbsp;</p>
+        How much would you like to invest?        <br />
+        $<input id="txt1stPay" type="text" value="1" /><br />        <br />
+        What will be the ANNUAL rate of interest?<br />
+        <input id="txtIntRate" type="text" value="100">/%<br />        <br />
+        How many years will the money be invested for?<br />
+        <input id="txtDayCount" type="text" value="20" />
+        years<br />        <br />
+        <input id="Run" type="Button" value="run" onclick="sum()" />        <br />
+        The total accumulated amount is:<br />
+        <textarea id="txtPayTot" rows="1" cols="20"></textarea><br />
+        The yearly totals are:<br />
+        <textarea id="txtRunningTotal" rows="25" cols="90"></textarea>        <br />        <br />
+        Value at the END of the nth year with the Annuity formula is: <br />
+        <textarea id="txtCompInt" rows="1" cols="50"></textarea><br />
+    </form>
+</body>
+</html>
